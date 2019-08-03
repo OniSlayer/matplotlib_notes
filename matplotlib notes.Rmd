@@ -90,5 +90,12 @@ plt.savefig("test.png")
 ## Using seaborn and pandas to plot directly
 
 ```{python}
-
+# Load data set to experiment
+goodread = pd.read_csv("books.csv", delimiter=",", error_bad_lines = False)
+lgoodread = goodread[0:500]
+lgoodread.info()
+frequency_titles = lgoodread["title"].value_counts()
+repeated_titles = frequency_titles[frequency_titles > 1]
+repeated_titles.index
+lgoodread[lgoodread["title"].isin(repeated_titles.index)]
 ```
