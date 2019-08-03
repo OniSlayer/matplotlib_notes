@@ -16,7 +16,78 @@ jupyter:
 
 This notes were taken from the DataQuest module called Exploratory Data Visualization
 
-## Line Charts
+- Make single plots using plt.figure() and fig.add_subplot
+- Make panel plots using plt.subplots
+- Adjust spaces with subplots_adjust
+- Change styles with linestyle, color and marker attributes (this attributes are passed to the chosen graph function and depend on change depending on the function chosen)
+- Change how the lines are joined with the drawstyle option
+- Create a legend passing the label parameter and plt.legend(loc = 'best')
+- Modifing axis with set_xticks, set_xtickslabels and set_xlim. Specially the rotation parameter to set_xtickslabels
+
+
+xticks (where the ticks are positioned), xtickslabels(the label for each tick) and xlim (choose the beginning and end of the axis). The rotation parameter to 
+
+```{python}
+import pandas as pd
+#import matplotlig
+import matplotlib.pyplot as plt
+#interactive ploting
+# %matplotlib notebook
+import numpy as np
+
+```
+
+```{python}
+#simple demo of how to plot
+plt.plot(np.arange(10))
+```
+
+```{python}
+# plots always needs a figure
+fig = plt.figure()
+# then you can add a subplot to the figure 
+# the params to add_subplot denote the row, the column and the plot you are using
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2,2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+# note how you cand plot on each subplot (AxesSubplot) by using the methods on it
+ax3.plot(np.random.randn(10))
+ax2.hist(np.random.randn(500), bins = 20, color='k')
+ax1.scatter(np.arange(10), np.arange(10)*np.random.randn(10))
+```
+
+```{python}
+# you can create a figure and multiple subplots on a single command
+# here this creates a figure with two rows and one column
+fig, axes = plt.subplots(2, 1)
+# each axis is accesible in an array like fashion
+axes[0].hist(np.random.randn(500), bins = 20, color='k')
+axes[1].scatter(np.arange(10), np.arange(10)*np.random.randn(10))
+
+```
+
+```{python}
+# Taking spaces away from the insides of the figure
+fig, axes = plt.subplots(2, 1)
+axes[0].hist(np.random.randn(500), bins = 20, color='k')
+axes[1].scatter(np.arange(10), np.arange(10)*np.random.randn(10))
+plt.subplots_adjust(wspace = 0, hspace =0)
+
+```
+
+```{python}
+fig, axes = plt.subplots(2, 1)
+axes[0].hist(np.random.randn(500), bins = 20, color='k')
+axes[1].scatter(np.arange(10), np.arange(10)*np.random.randn(10))
+plt.subplots_adjust(wspace = 0, hspace =0)
+plt.savefig("test.png")
+```
+
+```{python}
+# !ls
+```
+
+## Using seaborn and pandas to plot directly
 
 ```{python}
 
